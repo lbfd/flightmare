@@ -105,7 +105,7 @@ elseif("${CMAKE_HOST_SYSTEM_PROCESSOR}" STREQUAL "aarch64")
   message(STATUS "Using ARM aarch64 optimized flags!")
   set(CMAKE_CXX_ARCH_FLAGS " -Wno-psabi -march=armv8-a+crypto -mcpu=cortex-a57+crypto")
 else()
-  set(CMAKE_CXX_ARCH_FLAGS " -march=native")
+  set(CMAKE_CXX_ARCH_FLAGS " -march=native -fopenmp")
 endif()
 
 # Optimized flags

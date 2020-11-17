@@ -27,8 +27,8 @@ FlightPilot::FlightPilot(const ros::NodeHandle &nh, const ros::NodeHandle &pnh)
   Matrix<3, 3> R_BC = Quaternion(1.0, 0.0, 0.0, 0.0).toRotationMatrix();
   std::cout << R_BC << std::endl;
   rgb_camera_->setFOV(90);
-  rgb_camera_->setWidth(720);
-  rgb_camera_->setHeight(480);
+  rgb_camera_->setWidth(2880);
+  rgb_camera_->setHeight(1660);
   rgb_camera_->setRelPose(B_r_BC, R_BC);
   quad_ptr_->addRGBCamera(rgb_camera_);
 
