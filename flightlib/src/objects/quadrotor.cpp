@@ -14,6 +14,7 @@ Quadrotor::Quadrotor(const std::string &cfg_path)
   init();
 }
 
+// TODO Remove this
 Quadrotor::Quadrotor(const QuadrotorDynamics &dynamics)
   : world_box_((Matrix<3, 2>() << -100, 100, -100, 100, -100, 100).finished()),
     dynamics_(dynamics),
@@ -213,6 +214,7 @@ bool Quadrotor::getMotorOmega(Ref<Vector<4>> motor_omega) const {
 }
 
 bool Quadrotor::getDynamics(QuadrotorDynamics *const dynamics) const {
+    // TODO Rename this to getPhysicsEngine
   if (!dynamics_.valid()) return false;
   *dynamics = dynamics_;
   return true;
@@ -221,6 +223,7 @@ bool Quadrotor::getDynamics(QuadrotorDynamics *const dynamics) const {
 const QuadrotorDynamics &Quadrotor::getDynamics() { return dynamics_; }
 
 bool Quadrotor::updateDynamics(const QuadrotorDynamics &dynamics) {
+    // TODO Rename this to setPhysicsEngine
   if (!dynamics.valid()) {
     std::cout << "[Quadrotor] dynamics is not valid!" << std::endl;
     return false;

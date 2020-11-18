@@ -48,12 +48,6 @@ class Quadrotor : ObjectBase {
   bool updateDynamics(const QuadrotorDynamics& dynamics);
   bool addRGBCamera(std::shared_ptr<RGBCamera> camera);
 
-  // low-level controller
-  Vector<4> runFlightCtl(const Scalar sim_dt, const Vector<3>& omega,
-                         const Command& cmd);
-
-  // simulate motors
-  void runMotors(const Scalar sim_dt, const Vector<4>& motor_thrust_des);
 
   // constrain world box
   bool setWorldBox(const Ref<Matrix<3, 2>> box);
@@ -70,6 +64,14 @@ class Quadrotor : ObjectBase {
   IMU imu_;
   std::unique_ptr<IntegratorRK4> integrator_ptr_;
   std::vector<std::shared_ptr<RGBCamera>> rgb_cameras_;
+
+  // simulate motors
+  void runMotors(const Scalar sim_dt, const Vector<4>& motor_thrust_des);
+  
+  // low-level controller
+  Vector<4> runFlightCtl(const Scalar sim_dt, const Vector<3>& omega,
+                         const Command& cmd);
+
 
   // quad control command
   Command cmd_;
