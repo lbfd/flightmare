@@ -57,6 +57,14 @@ class Quadrotor : ObjectBase {
   inline Scalar getMass(void) { return dynamics_.getMass(); };
   inline void setSize(const Ref<Vector<3>> size) { size_ = size; };
   inline void setCollision(const bool collision) { collision_ = collision; };
+  
+  // simulate motors
+  void runMotors(const Scalar sim_dt, const Vector<4>& motor_thrust_des);
+  
+  // low-level controller
+  Vector<4> runFlightCtl(const Scalar sim_dt, const Vector<3>& omega,
+                         const Command& cmd);
+
 
  private:
   // quadrotor dynamics, integrators
@@ -64,13 +72,6 @@ class Quadrotor : ObjectBase {
   IMU imu_;
   std::unique_ptr<IntegratorRK4> integrator_ptr_;
   std::vector<std::shared_ptr<RGBCamera>> rgb_cameras_;
-
-  // simulate motors
-  void runMotors(const Scalar sim_dt, const Vector<4>& motor_thrust_des);
-  
-  // low-level controller
-  Vector<4> runFlightCtl(const Scalar sim_dt, const Vector<3>& omega,
-                         const Command& cmd);
 
 
   // quad control command
