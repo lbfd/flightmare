@@ -40,7 +40,11 @@ TEST(Quadrotor, Constructor) {
 }
 
 TEST(Quadrotor, ResetSimulator) {
-  Quadrotor quad;
+  const std::string cfg_path =
+    getenv("FLIGHTMARE_PATH") +
+    std::string("/flightlib/configs/quadrotor_default.yaml");
+  Quadrotor quad(cfg_path);
+  // Quadrotor quad;
   QuadState initial_state;
   QuadState quad_state;
   Vector<4> motor_omega;
@@ -72,7 +76,11 @@ TEST(Quadrotor, ResetSimulator) {
 }
 
 TEST(Quadrotor, RunQuadCmdFeedThrough) {
-  Quadrotor quad;
+  const std::string cfg_path =
+    getenv("FLIGHTMARE_PATH") +
+    std::string("/flightlib/configs/quadrotor_default.yaml");
+  Quadrotor quad(cfg_path);
+  // Quadrotor quad;
   QuadrotorDynamics dynamics = quad.getDynamics();
   Scalar inv_tau = 1.0 / 1e-6;
   dynamics.setMotortauInv(inv_tau);
@@ -162,7 +170,11 @@ TEST(Quadrotor, RunQuadCmdFeedThrough) {
 }
 
 TEST(Quadrotor, RunSimulatorBodyRate) {
-  Quadrotor quad;
+  const std::string cfg_path =
+    getenv("FLIGHTMARE_PATH") +
+    std::string("/flightlib/configs/quadrotor_default.yaml");
+  Quadrotor quad(cfg_path);
+  // Quadrotor quad;
   QuadrotorDynamics dynamics = quad.getDynamics();
   Scalar inv_tau = (1.0 / 1e-6);
   dynamics.setMotortauInv(inv_tau);
